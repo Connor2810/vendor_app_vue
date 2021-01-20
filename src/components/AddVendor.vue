@@ -57,13 +57,12 @@ export default {
   methods: {
     addVendor: function () {
       if (this.name != "" && this.email != "" && this.number != "") {
-        axios.post("//localhost/test/post.php", {
+        axios.post("//localhost/test/post.php",JSON.stringify( {
             request: 2,
             email: this.email,
             name: this.name,
             number: this.number,
-            data: JSON.stringify({})
-          })
+          }))
           .then(function (response) {
             console.log(response);
             if (response.data[0].status == 1) {
