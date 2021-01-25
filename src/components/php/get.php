@@ -11,15 +11,12 @@ if (!$con) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$condition = "1";
-if(isset($_GET['userid'])){
-   $condition = " id=".$_GET['userid'];
-}
-$userData = mysqli_query($con,"select * from vendors WHERE ".$condition);
+
+$sql = mysqli_query($con,"select Name, Email, Phone from vendors");
 
 $response = array();
 
-while($row = mysqli_fetch_assoc($userData)){
+while($row = mysqli_fetch_assoc($sql)){
 
    $response[] = $row;
 }

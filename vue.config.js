@@ -1,8 +1,10 @@
 module.exports = {
     configureWebpack: {
         devServer: {
-          proxy: 'http://localhost/test/post.php:8080'
+          headers: {
+            "Access-Control-Allow-Origin": "*"
         }
+          
       }
    /* devServer: {
         proxy: 'http://localhost/test/post.php'
@@ -13,5 +15,5 @@ module.exports = {
         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     }*/
 
-}
-
+  }
+};

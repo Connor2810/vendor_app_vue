@@ -2,14 +2,14 @@
   <div>
     <div class="container">
       <h3>Add Vendor</h3>
-      <form>
+      <form id="vendorForm" @submit.prevent="addVendor">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
             <input
               type="email"
               class="form-control"
-              v-model= "email"
+              v-model="email"
               id="inputEmail4"
               placeholder="Email"
             />
@@ -18,7 +18,7 @@
             <label for="inputName">Vendor Name</label>
             <input
               type="text"
-              v-model= "name"
+              v-model="name"
               class="form-control"
               id="inputname"
               placeholder="Name"
@@ -30,12 +30,12 @@
           <input
             type="number"
             class="form-control"
-            v-model= "number"
+            v-model="number"
             id="inputNumber"
             placeholder="E.g. 01224 326753"
           />
         </div>
-        <button @click="addVendor" type="submit" class="btn btn-primary">
+        <button class="btn btn-primary">
           Submit
         </button>
       </form>
@@ -46,38 +46,37 @@
 <script>
 import axios from "axios";
 export default {
-  name: "AddVendor",
+
   data() {
     return {
       email: "",
       name: "",
       number: "",
-    };
+    }
   },
   methods: {
     addVendor: function () {
-      if (this.name != "" && this.email != "" && this.number != "") {
-        axios.post("//localhost/test/post.php",JSON.stringify( {
-            request: 2,
-            email: this.email,
-            name: this.name,
-            number: this.number,
-          }))
-          .then(function (response) {
-            console.log(response);
-            if (response.data[0].status == 1) {
-              alert("Data saved");
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      } else {
-        alert("Please fill in all fields");
-      }
-    },
-  },
-};
+     // const headers ={
+       // 'Content-Type': 'application/json, text/plain, */*',
+      //}
+     axios.post('http://localhost/test/post.php',{
+       email: this.email,
+       name: this.name,
+       number: this.number,
+       
+
+     })
+     .then((response) =>{
+       console.log(response);
+       console.log(this.email);
+       console.log(this.name);
+       console.log(this.number);
+     }, (error)=>{
+       console.log(error);
+     })
+    }
+  }
+}
 </script>
 
 <style scoped>

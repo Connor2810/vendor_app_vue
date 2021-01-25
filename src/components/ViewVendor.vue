@@ -1,18 +1,18 @@
 <template>
-  <div id="view">
+  <div>
     <input type="button" @click="allVendors()" value="Select All vendors" />
     <br /><br />
-    <table border="1" width="80%" style="border-collapse: collapse">
+    <table border="1" width="100%" style="border-collapse: collapse">
       <tr>
-        <th>Username</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Phone Number</th>
       </tr>
 
-      <tr v-for="vendor in vendors" v-bind:key="vendor">
-        <td>{{ vendor.email }}</td>
-        <td>{{ vendor.name }}</td>
-        <td>{{ vendor.number }}</td>
+      <tr v-for="vendor in vendors" :key="vendor.id">
+        <td>{{ vendor.Name }}</td>
+        <td>{{ vendor.Email }}</td>
+        <td>{{ vendor.Phone }}</td>
       </tr>
     </table>
   </div>
@@ -20,19 +20,21 @@
 
 <script>
 import axios from 'axios';
+
 export default {
-    el: '#view',
     data(){
         return{
-        vendors: this.vendors,
-        vendorid: 0
-        }
+        vendors: [],
+        };
     },
     methods:{
         allVendors: function(){
-            axios.get('//localhost/test/get.php')
-            .then(function response(){
+          //const self = this;
+            axios.get('http://localhost/test/get.php')
+            .then((response) =>{
+                console.log(response.data)
                 this.vendors = response.data;
+                
             })
             .catch(function (error){
                 console.log(error);
