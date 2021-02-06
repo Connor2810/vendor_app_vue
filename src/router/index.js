@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AddVendor from '@/components/AddVendor.vue'
 import ViewVendor from '@/components/ViewVendor.vue'
+import AddContact from '@/components/AddContact.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,7 +29,12 @@ const routes = [
     path: '/ViewVendor',
     name: 'ViewVendor',
     component: ViewVendor
-  }
+  },
+  {
+    path: '/AddContact',
+    name: 'AddContatc',
+    component: AddContact
+  },
 
 ]
 
