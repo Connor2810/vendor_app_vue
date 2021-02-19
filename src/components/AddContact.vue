@@ -6,11 +6,10 @@
         
           <div class="form-group">
             <label for="selectVendor">Search Vendor: </label>
-            <select placeholder="select vendor" v-model="vendor" @change="getVendor()">
+            <select placeholder="select vendor" v-model="vendorID" @change="assignVendor()">
               <option value="0">Select Vendor</option>
-              <option v-for="(vendor, index) in vendors" :value="index" :key="vendor.id">
+              <option v-for="vendor in vendors" :value="vendor.id" :key="vendor.id">
                 {{ vendor.Name }}
-                {{vendor.id}}
               </option>
             </select>
           </div>
@@ -73,15 +72,15 @@ export default {
     data(){
         return{
             vendors: [],
-            vendor: '',
+            vendorID: '',
             email: '',
             contactName: '',
             number: '',
             job: '',
-            vendorID: '',
-            selected:{
-                vendor:''
-            }
+            //vendorID: -1,
+            //selected:{
+                //vendor:''
+            //}
         }
     },
     mounted(){
@@ -103,14 +102,21 @@ export default {
             });
 
         },
+
+        assignVendor: function(){
+          //this.vendorID=this.vendor;
+          //console.log(JSON.parse(this.vendor))
+          console.log(this.vendorID)
+          return this.vendorID
+        },
+        
         addContact: function(){
           axios.post('http://localhost/test/addContact.php',{
             email: this.email,
             contactName:this.contactName,
             number: this.number,
             job: this.job,
-            vendors: this.value,
-            vendorID: this.value
+            vendorID: this.vendorID
 
 
 

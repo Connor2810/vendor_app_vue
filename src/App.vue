@@ -19,6 +19,9 @@
         <b-nav-item>
           <router-link to ="/AddContact">Add Contact</router-link>
         </b-nav-item>
+        <b-nav-item>
+          <router-link to="/ViewContacts">View Contact</router-link>
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
     </b-navbar>

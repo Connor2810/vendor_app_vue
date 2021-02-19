@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import AddVendor from '@/components/AddVendor.vue'
 import ViewVendor from '@/components/ViewVendor.vue'
 import AddContact from '@/components/AddContact.vue'
+import ViewContacts from '@/components/ViewContacts.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,9 +33,14 @@ const routes = [
   },
   {
     path: '/AddContact',
-    name: 'AddContatc',
+    name: 'AddContact',
     component: AddContact
   },
+  {
+    path: '/ViewContacts',
+    name: 'ViewContacts',
+    component: ViewContacts
+  }
 
 ]
 
