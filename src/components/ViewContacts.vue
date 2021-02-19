@@ -49,7 +49,7 @@ export default {
                 //console.log(response.data.vendors)
                 this.vendors = response.data;
                 console.log(JSON.stringify(this.vendors))
-                console.log(this.vendors.Name)
+                console.log(this.vendorID)
                 
                 
             })
