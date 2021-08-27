@@ -25,7 +25,7 @@
             />
           </div>
         </div>
-        
+
         <div class="form-group">
           <label for="ParentName">Parent Company Name</label>
           <input
@@ -59,6 +59,23 @@
         <button class="btn btn-primary">Submit</button>
       </form>
     </div>
+    <div class="container">
+      <input type="button" @click="allVendors(); vendor_headers=true" value="Select All vendors" class="btn btn-primary"/>
+      <br /><br />
+      <table border="1" width="100%" style="border-collapse: collapse" v-show="vendor_headers">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+        </tr>
+
+        <tr v-for="vendor in vendors" :key="vendor.id">
+          <td>{{ vendor.Name }}</td>
+          <td>{{ vendor.Email }}</td>
+          <td>{{ vendor.Phone }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -66,12 +83,15 @@
 import axios from "axios";
 export default {
   data() {
+    
     return {
+      vendor_headers: false,
       email: "",
       name: "",
       number: "",
       parent_name: "",
       country: "",
+      vendors: [],
     };
   },
   methods: {
@@ -85,7 +105,7 @@ export default {
           name: this.name,
           number: this.number,
           parent_name: this.parent_name,
-          country: this.country
+          country: this.country,
         })
         .then(
           (response) => {
@@ -99,6 +119,18 @@ export default {
           }
         );
     },
+    allVendors: function(){
+          //const self = this;
+            axios.get('http://localhost/test/get.php')
+            .then((response) =>{
+                console.log(response.data)
+                this.vendors = response.data;
+                
+            })
+            .catch(function (error){
+                console.log(error);
+            });
+        }
   },
 };
 </script>
